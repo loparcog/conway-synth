@@ -1,6 +1,7 @@
 import pygame
 import sys
 import time
+import math
 
 ##
 #   METAVARS
@@ -46,7 +47,29 @@ def isAliveWrap(gridTog, xcell, ycell):
 
 # Check surrounding boxes without wrapping
 def isAliveNoWrap(gridTog, xcell, ycell):
-    print("TODO")
+    totl = 0
+    lg = len(gridTog)
+    xlow = math.floor(xcell-1, 0) 
+    xhigh = math.ceil(xcell+2, len[gridTog])
+    ylow = math.floor(ycell-1, 0)
+    yhigh = math.ceil(ycell+2, len[gridTog])
+    # Check three rows
+    for x in range(xlow, xhigh):
+        for y in range(ylow, yhigh):
+            totl += gridTog[x][y]
+    # Consider original
+    if gridTog[xcell][ycell]:
+        # Cell on (sub 1 from total)
+        if 3 <= totl <= 4:
+            return 1
+        else:
+            return 0
+    else:
+        # Cell off
+        if totl == 3:
+            return 1
+        else:
+            return 0
 
 
 # Grid Functions
