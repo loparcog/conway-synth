@@ -1,0 +1,19 @@
+#header{
+    height: 30vh;
+    width: 90%;
+    background-color: green;
+    display:inline-block;
+}
+
+#gameCanvas{
+    height: 100%;
+    width: 100%;
+    background-color: cadetblue;
+}
+
+#cvsContainer{
+    height: 70vh;
+    width: 90%;
+    background-color: red;
+    display:inline-block;
+}

@@ -1,0 +1,22 @@
+{
+  "name": "conway-synth",
+  "version": "1.0.0",
+  "description": "Generative synth based on Conway's Game of Life",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/loparcog/conway-synth.git"
+  },
+  "author": "Giacomo Loparco",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/loparcog/conway-synth/issues"
+  },
+  "homepage": "https://github.com/loparcog/conway-synth#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
