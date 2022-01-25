@@ -7,7 +7,9 @@ I started in Python, brew and pip weren't being friendly to one another, and I r
 
 ## To Run
 To currently run this project:
-- ???
+- Navigate to the `server` folder, and run `npm update`
+- Run `node server.js`
+- Navigate to `localhost:3000` to access the frontend
 
 To run the depricated  Python code:
 - Run `main.py`
