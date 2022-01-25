@@ -12,6 +12,18 @@ To currently run this project:
 - Navigate to `localhost:3000` to access the frontend
 
 To run the depricated  Python code:
+- Don't, like please, I don't think it works and it's just around for some code guidance
 - Run `main.py`
 - Click any boxes for the initial condition
 - Press `return` to start the game
+
+TODO/Goals
+- UI
+    - Knobs/sliders to change sound
+    - Key selector
+    - Adjust resolution for different screen sizes
+- Backend
+    - Change sound with y-axis (?)
+    - Add tempo adjustment
+    - Add in customizers for notes (envelope, portamento, etc.)
+    - Only play notes of NEW boxes
