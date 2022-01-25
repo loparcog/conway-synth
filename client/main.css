@@ -1,8 +1,9 @@
 #header{
-    height: 30vh;
+    height: 20vh;
     width: 90%;
     background-color: green;
     display:inline-block;
+    text-align: center;
 }
 
 #gameCanvas{

@@ -30,12 +30,23 @@ function DPIFix() {
 let grid; // Render grid
 let gridTog; // Last grid
 let gridTogOld; // Storage for calculating new iteration
-let gridwidth = 10; // # of columns
-let gridheight = 20; // # of rows
-let cellsize = 100; // Size of cell squares
+let gridwidth = 40; // # of columns
+let gridheight = 15; // # of rows
+let cellsize = 50; // Size of cell squares
 let cellspc = 5; // Space of cells
 let cellcolor = ['black', 'white']
 let gameOn = false;
+let chord = [];
+// Simulate zoom and moving effects
+let canvasX = 0;
+let canvasY = 0;
+
+/* 
+    Tone Code 
+*/
+
+// Set up a synth
+const synth = new Tone.PolySynth().toDestination();
 
 /*
     Header Code
@@ -59,18 +70,27 @@ class Cell {
         this.drawx = drawx;
         this.drawy = drawy;
         this.color = cellcolor[0];
+        this.note = Tone.Frequency(this.x + 40, "midi").toNote();
     }
 
     // Toggle the cell on/off
     toggle(){
         gridTog[this.x][this.y] = 1 - gridTog[this.x][this.y];
         this.color = cellcolor[gridTog[this.x][this.y]];
+        // Play the associated sound
+        synth.triggerAttackRelease(this.note, "8n");
     }
 
+    // Draw the cell
     draw(){
         // Draw the rectangle
         ctx.fillStyle = this.color;
         ctx.fillRect(this.drawx, this.drawy, cellsize, cellsize);
+    }
+
+    // Play the note associated with the cell
+    play(){
+        synth.triggerAttackRelease(this.note, "8n");
     }
 
     // Check if the cell will be alive on the next iteration
@@ -93,9 +113,11 @@ class Cell {
             console.log(totl)
             gridTog[this.x][this.y] = 1
             this.color = cellcolor[1]
+            chord.push(this.note);
         } else if (!gridTog[this.x][this.y] && totl == 3){
             gridTog[this.x][this.y] = 1
             this.color = cellcolor[1]
+            chord.push(this.note);
         } else {
             gridTog[this.x][this.y] = 0
             this.color = cellcolor[0]
@@ -130,8 +152,8 @@ function gridDraw(){
 
 // Calculate next steps for the grid and draw
 function gridIterDraw(){
-    // Update the old stored gridTog
-    //gridTogOld = JSON.parse(JSON.stringify(gridTog));
+    // Update the old stored gridTog and chord
+    chord = []
     gridTogOld = gridTog.map(function(col) {
         return col.slice();
     });
@@ -141,6 +163,8 @@ function gridIterDraw(){
             grid[x][y].draw();
         }
     }
+    // Play the chord
+    synth.triggerAttackRelease(chord, "8n");
 }
 
 // Create a click event for the canvas
@@ -162,6 +186,11 @@ canvas.onmousedown = function(e){
             }
         }
     }
+}
+
+// Get scroll to move in/out
+canvas.onwheel = function(e){
+    // Adjust view size
 }
 
 function delay(time) {
