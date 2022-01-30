@@ -21,18 +21,23 @@
             <!-- Envelope Control -->
             <div id="headerEnv">
                 <h2>Envelope</h2>
-                <label for="attack">Attack</label>
                 <input type="range" id="selAtk" name="attack"
-                min="0" max="20" value="1" autocomplete="off"> <br/>
-                <label for="decay">Decay</label>
+                min="0" max="20" value="1" autocomplete="off"> 
+                <label id="lblAtk" for="attack">Attack (0.1s)</label> <br/>
                 <input type="range" id="selDec" name="decay"
-                min="0" max="20" value="1" autocomplete="off"> <br/>
-                <label for="sustain">Sustain</label>
+                min="0" max="20" value="1" autocomplete="off"> 
+                <label id="lblDec" for="decay">Decay (0.1s)</label> <br/>
                 <input type="range" id="selSus" name="sustain"
-                min="0" max="10" value="3" autocomplete="off"> <br/>
-                <label for="release">Release</label>
+                min="0" max="10" value="3" autocomplete="off"> 
+                <label id="lblSus" for="sustain">Sustain (0.3)</label> <br/>
                 <input type="range" id="selRel" name="release"
-                min="0" max="20" value="10" autocomplete="off"> <br/>
+                min="0" max="20" value="10" autocomplete="off"> 
+                <label id="lblRel" for="release">Release (1.0s)</label> <br/>
+            </div>
+            <!-- Mod/Other Synth Controls -->
+            <div id="headerMod">
+                <h2>Mod</h2>
+                
             </div>
             
         </div>

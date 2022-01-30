@@ -11,6 +11,10 @@ const selAtk = document.getElementById('selAtk');
 const selDec = document.getElementById('selDec');
 const selSus = document.getElementById('selSus');
 const selRel = document.getElementById('selRel');
+const lblAtk = document.getElementById('lblAtk');
+const lblDec = document.getElementById('lblDec');
+const lblSus = document.getElementById('lblSus');
+const lblRel = document.getElementById('lblRel')
 
 // Perform a DPI fix for drawing
 function DPIFix() {
@@ -82,38 +86,58 @@ btnRun.onclick = function(){
 
 // Update envelope values whenever changed
 selAtk.addEventListener('input', function (e) {
+    // Set envelope value (/10 for decimal incrmeents)
+    let v = e.target.value/10
     synth.set({
         envelope: {
-            attack: e.target.value/10
+            attack: v
         }
     });
+    // Set label as well
+    lblAtk.innerHTML = `Attack (${v}s)`
 });
 
 selDec.addEventListener('input', function (e) {
+    let v = e.target.value/10
     synth.set({
         envelope: {
-            decay: e.target.value/10
+            decay: v
         }
     });
+    lblDec.innerHTML = `Decay (${v}s)`
 });
 
 selSus.addEventListener('input', function (e) {
+    let v = e.target.value/10
     synth.set({
         envelope: {
-            sustain: e.target.value/10
+            sustain: v
         }
     });
+    lblSus.innerHTML = `Sustain (${v})`
 });
 
 selRel.addEventListener('input', function (e) {
+    let v = e.target.value/10
     synth.set({
         envelope: {
             // Make sure value is NEVER 0, makes clicky noise
-            release: e.target.value/10 + 0.01
+            release: v + 0.01
         }
     });
+    lblRel.innerHTML = `Release (${v}s)`
 });
 
+/*
+    TO MOD AROUND:
+    - Volume
+    - Detune
+    - Portamento
+    - Oscillator
+        - Type (sine, square, triangle, sawtooth)
+        - Phase (?)
+        - Partials (sets type to custom, can set some wild shaping)
+    - Would really like to get a waveform shaper
 /*
     Canvas Code
 */

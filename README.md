@@ -24,6 +24,8 @@ TODO/Goals
     - Change box size for different resolutions?
     - Center grid
     - Tidy controls
+    - Graph envelope..?
+    - Graph waveform..?
     - ~~Adjust resolution for different screen sizes~~
 - Backend
     - Change sound with y-axis (?)

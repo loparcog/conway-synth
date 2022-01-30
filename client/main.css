@@ -41,6 +41,13 @@ html, body {
     border-width: 2px;
 }
 
+#headerMod{
+    grid-area: mod;
+    border-style: solid;
+    border-color: yellow;
+    border-width: 2px; 
+}
+
 #gameCanvas{
     height: 100%;
     width: 100%;
