@@ -23,17 +23,20 @@ function DPIFix() {
     canvas.setAttribute('height', style.height() * dpi);
 }
 
+DPIFix();
+
 /*
     Metavars
 */
 
 let grid; // Render grid
-let gridTog; // Last grid
+let gridBase; // Starting array for grid before game
+let gridTog; // Which grid cells are toggled
 let gridTogOld; // Storage for calculating new iteration
-let gridwidth = 40; // # of columns
-let gridheight = 15; // # of rows
 let cellsize = 50; // Size of cell squares
 let cellspc = 5; // Space of cells
+let gridwidth = Math.floor(canvas.width / (cellsize + cellspc)); // # of columns
+let gridheight = Math.floor(canvas.height / (cellsize + cellspc));; // # of rows
 let cellcolor = ['black', 'white']
 let gameOn = false;
 let chord = [];
@@ -55,7 +58,17 @@ const synth = new Tone.PolySynth().toDestination();
 // Button to start/end the game
 btnRun.onclick = function(){
     // Toggle game state
-    gameOn = !gameOn;
+    if (!gameOn){
+        // Save current grid layout
+        // Turn game on
+        btnRun.innerHTML = "Stop Game";
+        gameOn = true;
+    } else {
+        // Turn game off
+        gameOn = false;
+        btnRun.innerHTML = "Start Game"
+        // Reinitialize base game state
+    }
 }
 
 /*
@@ -110,13 +123,13 @@ class Cell {
         }
         // See if it matches conditions to live
         if (gridTog[this.x][this.y] && (3 <= totl && totl <= 4)){
-            console.log(totl)
             gridTog[this.x][this.y] = 1
             this.color = cellcolor[1]
-            chord.push(this.note);
+            //chord.push(this.note);
         } else if (!gridTog[this.x][this.y] && totl == 3){
             gridTog[this.x][this.y] = 1
             this.color = cellcolor[1]
+            // Only push the note if its a new cell
             chord.push(this.note);
         } else {
             gridTog[this.x][this.y] = 0
@@ -178,8 +191,8 @@ canvas.onmousedown = function(e){
     for (const col of grid){
         for (const cl of col){
             // Check for collision
-            if (x >= cl.drawx && y >= cl.drawy &&
-                x <= cl.drawx + cellsize && y <= cl.drawy + cellsize){
+            if (!gameOn && (x >= cl.drawx && y >= cl.drawy &&
+                x <= cl.drawx + cellsize && y <= cl.drawy + cellsize)){
                     // Toggle and leave the function
                     cl.toggle()
                     return;

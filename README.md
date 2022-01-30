@@ -21,9 +21,11 @@ TODO/Goals
 - UI
     - Knobs/sliders to change sound
     - Key selector
-    - Adjust resolution for different screen sizes
+    - Change box size for different resolutions?
+    - ~~Adjust resolution for different screen sizes~~
 - Backend
     - Change sound with y-axis (?)
     - Add tempo adjustment
     - Add in customizers for notes (envelope, portamento, etc.)
-    - Only play notes of NEW boxes
+    - Return to starting grid when stopping game
+    - ~~Only play notes of NEW boxes~~
