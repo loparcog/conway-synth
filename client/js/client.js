@@ -7,6 +7,10 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 const dpi = window.devicePixelRatio;
 const btnRun = document.getElementById('btnRun');
+const selAtk = document.getElementById('selAtk');
+const selDec = document.getElementById('selDec');
+const selSus = document.getElementById('selSus');
+const selRel = document.getElementById('selRel');
 
 // Perform a DPI fix for drawing
 function DPIFix() {
@@ -29,6 +33,7 @@ DPIFix();
     Metavars
 */
 
+// Grid Display
 let grid; // Render grid
 let gridBase; // Starting array for grid before game
 let gridTog; // Which grid cells are toggled
@@ -38,11 +43,14 @@ let cellspc = 5; // Space of cells
 let gridwidth = Math.floor(canvas.width / (cellsize + cellspc)); // # of columns
 let gridheight = Math.floor(canvas.height / (cellsize + cellspc));; // # of rows
 let cellcolor = ['black', 'white']
+// Game toggle
 let gameOn = false;
+// Music controls
+let atk = 0
+let dec = 0
+let sus = 0.5
+let rel = 0.2
 let chord = [];
-// Simulate zoom and moving effects
-let canvasX = 0;
-let canvasY = 0;
 
 /* 
     Tone Code 
@@ -50,6 +58,7 @@ let canvasY = 0;
 
 // Set up a synth
 const synth = new Tone.PolySynth().toDestination();
+console.log(synth.get())
 
 /*
     Header Code
@@ -70,6 +79,40 @@ btnRun.onclick = function(){
         // Reinitialize base game state
     }
 }
+
+// Update envelope values whenever changed
+selAtk.addEventListener('input', function (e) {
+    synth.set({
+        envelope: {
+            attack: e.target.value/10
+        }
+    });
+});
+
+selDec.addEventListener('input', function (e) {
+    synth.set({
+        envelope: {
+            decay: e.target.value/10
+        }
+    });
+});
+
+selSus.addEventListener('input', function (e) {
+    synth.set({
+        envelope: {
+            sustain: e.target.value/10
+        }
+    });
+});
+
+selRel.addEventListener('input', function (e) {
+    synth.set({
+        envelope: {
+            // Make sure value is NEVER 0, makes clicky noise
+            release: e.target.value/10 + 0.01
+        }
+    });
+});
 
 /*
     Canvas Code

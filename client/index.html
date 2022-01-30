@@ -1,21 +1,42 @@
 <!DOCTYPE html>
 <html>
 
+    <meta charset="UTF-8">
+
     <head>
         <title> Conway Synth </title>
         <link rel="stylesheet" href="main.css">
     </head>
     
     <body>
-        <div id="header">
-            <h1>Conway Synth</h1>
-            <p>A generative synth based on Conway's Game of Life</p>
-            <!-- Synth Controls -->
-            <button id="btnRun">Start Game</button>
-
+        <div id="headerGrid">
+            <div id="headerText">
+                <h1>Conway Synth</h1>
+                <p>A generative synth based on Conway's Game of Life</p>
+            </div>  
+            <!-- Start Area -->
+            <div id="headerStrt">
+                <button id="btnRun">Start Game</button>
+            </div>
+            <!-- Envelope Control -->
+            <div id="headerEnv">
+                <h2>Envelope</h2>
+                <label for="attack">Attack</label>
+                <input type="range" id="selAtk" name="attack"
+                min="0" max="20" value="1" autocomplete="off"> <br/>
+                <label for="decay">Decay</label>
+                <input type="range" id="selDec" name="decay"
+                min="0" max="20" value="1" autocomplete="off"> <br/>
+                <label for="sustain">Sustain</label>
+                <input type="range" id="selSus" name="sustain"
+                min="0" max="10" value="3" autocomplete="off"> <br/>
+                <label for="release">Release</label>
+                <input type="range" id="selRel" name="release"
+                min="0" max="20" value="10" autocomplete="off"> <br/>
+            </div>
             
         </div>
-        <div id="cvsContainer">
+        <div id="gameDiv">
             <canvas id="gameCanvas"></canvas>
         </div>
     </body>

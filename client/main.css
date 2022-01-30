@@ -1,9 +1,44 @@
-#header{
-    height: 20vh;
-    width: 90%;
-    background-color: green;
-    display:inline-block;
+html, body {
+    font-family: "Monaco", monospace;
+    margin: 0; 
+    height: 100%; 
+    overflow: hidden;
+    background-color: rgb(222, 245, 222);
+}
+
+#headerGrid{
+    height: 30vh;
+    width: 100%;
+    display:grid;
+    grid-template-areas:
+    'header env mod'
+    'header env mod'
+    'strt env mod';
+    grid-template-columns: 20% 30% 30%;
+    grid-gap: 10px;
+    padding: 10px;
+}
+
+#headerText{
+    grid-area: header;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+}
+
+#headerStrt{
+    grid-area: strt;
     text-align: center;
+    border-style: solid;
+    border-color: green;
+    border-width: 2px;
+}
+
+#headerEnv{
+    grid-area: env;
+    border-style: solid;
+    border-color: red;
+    border-width: 2px;
 }
 
 #gameCanvas{
@@ -12,9 +47,8 @@
     background-color: cadetblue;
 }
 
-#cvsContainer{
+#gameDiv{
     height: 70vh;
-    width: 90%;
-    background-color: red;
+    width: 100%;
     display:inline-block;
 }

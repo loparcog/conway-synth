@@ -22,6 +22,8 @@ TODO/Goals
     - Knobs/sliders to change sound
     - Key selector
     - Change box size for different resolutions?
+    - Center grid
+    - Tidy controls
     - ~~Adjust resolution for different screen sizes~~
 - Backend
     - Change sound with y-axis (?)
